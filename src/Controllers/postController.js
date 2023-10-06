@@ -7,13 +7,13 @@ const PostController = {
     run : async function (req=REQUEST, res=RESPONSE) {
         const dataPosts = await fetchContentPosts();
         const jsonDataPosts = await dataPosts.json();
-        res.send(new SuccesResponse(jsonDataPosts).getSuccess());
+        res.send(new SuccesResponse(jsonDataPosts.data).getSuccess());
     },
     getById : async function (req=REQUEST, res=RESPONSE) {
         const id = req.params.id;
         const dataPost = await fetchContentDetailsByName(id);
         const jsonDataPost = await dataPost.json();
-        res.send(new SuccesResponse(jsonDataPost).getSuccess())
+        res.send(new SuccesResponse(jsonDataPost.data.contentComponent.content.json).getSuccess())
     }
 }
 module.exports = PostController;
