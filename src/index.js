@@ -1,10 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 8086;
+const PORT =  8080;
 const PostRoutes = require('./routers/postsRoutes');
-app.use("/posts",PostRoutes)
+const cors = require('cors');
 
+app.use(cors());
+app.use(express.json())
+
+app.use("/posts",PostRoutes);
 app.get("/",(req,res)=>{
     res.send("OK");
 });
