@@ -1,5 +1,5 @@
 const express = require('express');
-const { fetchContentPosts, fetchContentDetailsByName } = require('../services/fetchContent');
+const { fetchContentPosts, fetchContentDetailsByName, fetchCategories } = require('../services/fetchContent');
 const REQUEST = express.request;
 const RESPONSE = express.response;
 const {SuccesResponse} = require('../services/handlerResponses');
@@ -18,6 +18,11 @@ const PostController = {
 
     updateLikes : async function (req=REQUEST, res=RESPONSE) {
         
+    },
+    getCategories : async function (req=REQUEST, res=RESPONSE) {
+        const dataCategories = await fetchCategories();
+        const jsonDataCategories = await dataCategories.json();
+        res.send(new SuccesResponse(jsonDataCategories.data.categories).getSuccess())
     }
 }
 module.exports = PostController;

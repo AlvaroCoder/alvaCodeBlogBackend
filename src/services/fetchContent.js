@@ -12,6 +12,9 @@ async function  fetchContentPosts() {
                 heading
                 id
                 slug
+                categories {
+                  name
+                }
                 iconContent {
                   id
                   url
@@ -40,6 +43,9 @@ async function fetchContentDetailsByName(id) {
             id
             url
           }
+          categories {
+            name
+          }
           description
           content {
             json
@@ -47,6 +53,25 @@ async function fetchContentDetailsByName(id) {
         }
       }
       
+      `
+    })
+  })
+}
+async function fetchCategories() {
+  return fetch(process.env.URL_POSTS, {
+    method : 'POST',
+    headers : {
+      'Content-type' : 'application/json'
+    },
+    body : JSON.stringify({
+      query : `
+      query MyQuery {
+        categories {
+          id
+          name
+          slug
+        }
+      }
       `
     })
   })
@@ -76,4 +101,4 @@ async function fetchBlogDetailByID(id) {
     })
   })
 }
-module.exports = {fetchContentPosts, fetchContentDetailsByName, fetchBlogDetailByID}
+module.exports = {fetchCategories,fetchContentPosts, fetchContentDetailsByName, fetchBlogDetailByID}
