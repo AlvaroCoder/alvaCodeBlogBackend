@@ -13,7 +13,11 @@ const PostController = {
         const id = req.params.id;
         const dataPost = await fetchContentDetailsByName(id);
         const jsonDataPost = await dataPost.json();
-        res.send(new SuccesResponse(jsonDataPost.data.contentComponent.content.json).getSuccess())
+        res.send(new SuccesResponse(jsonDataPost.data.contentComponent).getSuccess())
+    },
+
+    updateLikes : async function (req=REQUEST, res=RESPONSE) {
+        
     }
 }
 module.exports = PostController;
