@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 async function  fetchContentPosts() {
     return fetch(process.env.URL_POSTS,{
         method : 'POST',
@@ -57,6 +59,30 @@ async function fetchContentDetailsByName(id) {
     })
   })
 }
+async function fetchPostsByCategorie(slug) {
+  return fetch(process.env.URL_POSTS,{
+    method : 'POST',
+    headers : {
+      'Content-type':'application/json'
+    },
+    body : JSON.stringify({
+      query : `
+      query MyQuery {
+        contentComponents(where: {categories_some: {slug: "${String(slug)}"}}) {
+          heading
+          id
+          description
+          slug
+          iconContent {
+            id
+            url
+          }
+        }
+      }
+      `
+    })
+  })
+}
 async function fetchCategories() {
   return fetch(process.env.URL_POSTS, {
     method : 'POST',
@@ -101,4 +127,4 @@ async function fetchBlogDetailByID(id) {
     })
   })
 }
-module.exports = {fetchCategories,fetchContentPosts, fetchContentDetailsByName, fetchBlogDetailByID}
+module.exports = {fetchCategories,fetchContentPosts, fetchContentDetailsByName, fetchBlogDetailByID, fetchPostsByCategorie}
