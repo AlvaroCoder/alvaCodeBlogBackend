@@ -77,6 +77,9 @@ async function fetchPostsByCategorie(slug) {
             id
             url
           }
+          categories {
+            name
+          }
         }
       }
       `

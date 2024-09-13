@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const { initializeApp } = require('firebase/app');
 const { getAnalytics } = require('firebase/analytics')
-const PORT =  process.env.PORT || 8081;
+const PORT =  process.env.PORT || 8082;
 // TODO : Cambiar puerto siempre
 // const PORT = 8084;
 const PostRoutes = require('./routers/postsRoutes');
