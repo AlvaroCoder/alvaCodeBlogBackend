@@ -3,12 +3,12 @@ const PostController = require('../Controllers/postController');
 
 const postControllerRoutes = PostController;
 
-router.get('/', postControllerRoutes.getPostsByCategorie)
-
-router.post('/', postControllerRoutes.run);
-
+router.get('/', postControllerRoutes.run);
+router.get('/filter', postControllerRoutes.getPostsByCategorie);
+router.get("/categories", postControllerRoutes.getCategories);
+router.get('/top-blogs',postControllerRoutes.getTopPosts);
 router.post('/id/:id',postControllerRoutes.getById);
 router.put('/likes',postControllerRoutes.updateLikes);
-router.get("/categories", postControllerRoutes.getCategories)
+
 
 module.exports = router;

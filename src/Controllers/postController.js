@@ -1,3 +1,7 @@
+/**
+ * Este fichero contralara las funcionalidades que podrá realizar el usuario
+ * dentro de mi página web con los posts publicados
+ */
 const express = require('express');
 const { fetchContentPosts, fetchContentDetailsByName, fetchCategories, fetchPostsByCategorie } = require('../services/fetchContent');
 const REQUEST = express.request;
@@ -28,6 +32,12 @@ const PostController = {
         const dataCategories = await fetchCategories();
         const jsonDataCategories = await dataCategories.json();
         res.send(new SuccesResponse(jsonDataCategories.data.categories).getSuccess())
+    },
+    getTopPosts : async function (req=REQUEST, res=RESPONSE) {
+        
+    },
+    getCheckUserIsRegister : async function (req=REQUEST, response=RESPONSE) {
+        
     }
 }
 module.exports = PostController;
