@@ -31,7 +31,8 @@ const PostController = {
     getCategories : async function (req=REQUEST, res=RESPONSE) {
         const dataCategories = await fetchCategories();
         const jsonDataCategories = await dataCategories.json();
-        res.send(new SuccesResponse(jsonDataCategories.data.categories).getSuccess())
+        const dataRespond = jsonDataCategories?.data.categories;                
+        res.send(new SuccesResponse(dataRespond).getSuccess())
     },
     getTopPosts : async function (req=REQUEST, res=RESPONSE) {
         
