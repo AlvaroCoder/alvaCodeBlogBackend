@@ -68,18 +68,22 @@ async function fetchPostsByCategorie(slug) {
     body : JSON.stringify({
       query : `
       query MyQuery {
-        contentComponents(where: {categories_some: {slug: "${String(slug)}"}}) {
-          heading
+        contentComponent(where: {slug: "${String(slug)}"}) {
           id
-          description
           slug
+          publishedAt
+          content {
+            json
+          }
+          description
           iconContent {
-            id
             url
           }
           categories {
             name
+            id
           }
+          heading
         }
       }
       `
