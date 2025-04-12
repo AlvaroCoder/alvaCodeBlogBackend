@@ -3,7 +3,7 @@
  * dentro de mi página web con los posts publicados
  */
 const express = require('express');
-const { fetchContentPosts, fetchContentDetailsByName, fetchCategories, fetchPostsByCategorie } = require('../services/fetchContent');
+const { fetchContentPosts, fetchContentDetailsByName, fetchCategories, fetchPostsByCategorie, fetchContentPostsExercise, fetchCategoriesExercises } = require('../services/fetchContent');
 const REQUEST = express.request;
 const RESPONSE = express.response;
 const {SuccesResponse} = require('../services/handlerResponses');
@@ -12,6 +12,16 @@ const PostController = {
         const dataPosts = await fetchContentPosts();
         const jsonDataPosts = await dataPosts.json();
         res.send(new SuccesResponse(jsonDataPosts.data).getSuccess());
+    },
+    getPostsExercise : async function (req=REQUEST, res=RESPONSE) {
+        const dataPostsExercise = await fetchContentPostsExercise();
+        const jsonDataPostsExercise = await dataPostsExercise.json();
+        res.send(new SuccesResponse(jsonDataPostsExercise?.data).getSuccess());
+    },
+    getPostsExerciseCategories : async function (req=REQUEST, res=RESPONSE) {
+        const dataCategoryExercise = await fetchCategoriesExercises();
+        const jsonDataCategories = await dataCategoryExercise.json();
+        res.send(new SuccesResponse(jsonDataCategories?.data).getSuccess());
     },
     getById : async function (req=REQUEST, res=RESPONSE) {
         const id = req.params.id;

@@ -27,6 +27,33 @@ async function  fetchContentPosts() {
         })
     })
 }
+
+async function fetchContentPostsExercise() {
+  return fetch(process.env.URL_POSTS,{
+    method : 'POST',
+    headers : {
+      'Content-type' : 'application/json'
+    },
+    body :JSON.stringify({
+      query : `
+      query MyQuery {
+        programmingExcercises(orderBy: publishedAt_DESC) {
+          id
+          slug
+          title
+          description {
+            raw
+          }
+          solutionImage {
+            fileName
+            url
+          }
+        }
+      }
+      `
+    })
+  })
+}
 async function fetchContentDetailsByName(id) {
   return fetch(process.env.URL_POSTS,{
     method : 'POST',
@@ -109,6 +136,24 @@ async function fetchCategories() {
     })
   })
 }
+async function fetchCategoriesExercises() {
+  return fetch(process.env.URL_POSTS,{
+    method : 'POST',
+    headers :{
+      'Content-type' : 'application/json'
+    },
+    body : JSON.stringify({
+      query : `
+      query MyQuery {
+      categoryExcercises {
+        id
+        nombre
+        slug
+      }}
+      `
+    })
+  })
+}
 async function fetchBlogDetailByID(id) {
   return fetch(process.env.URL_POSTS, {
     method : 'POST',
@@ -134,4 +179,11 @@ async function fetchBlogDetailByID(id) {
     })
   })
 }
-module.exports = {fetchCategories,fetchContentPosts, fetchContentDetailsByName, fetchBlogDetailByID, fetchPostsByCategorie}
+module.exports = {
+  fetchCategories,fetchContentPosts, 
+  fetchContentDetailsByName, 
+  fetchBlogDetailByID, 
+  fetchPostsByCategorie, 
+  fetchContentPostsExercise,
+  fetchCategoriesExercises
+}
