@@ -48,6 +48,9 @@ async function fetchContentPostsExercise() {
             fileName
             url
           }
+          categoryExcercise {
+            nombre
+          }
         }
       }
       `
